@@ -1,29 +1,3 @@
-# fluence
-
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+# Fluence
+#### Do you like websites interactive? We love it.
+That's Fluence, a simple and extensible theme wordpress to make your website most interactive with your users.
