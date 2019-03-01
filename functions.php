@@ -8,7 +8,7 @@ function remove_redirects() {
 add_action( 'init', 'remove_redirects' );
 // Load scripts
 function load_vue_scripts() {
-	wp_enqueue_script(
+	/*wp_enqueue_script(
 		'vuejs-wordpress-theme-starter-js',
 		get_stylesheet_directory_uri() . '/dist/scripts/index.min.bundle.js',
 		array( 'jquery' ),
@@ -20,6 +20,18 @@ function load_vue_scripts() {
 		get_stylesheet_directory_uri() . '/dist/styles.css',
 		null,
 		filemtime( get_stylesheet_directory() . '/dist/styles.css' )
-	);
+	);*/
 }
 add_action( 'wp_enqueue_scripts', 'load_vue_scripts', 100 );
+
+function get_menu() {
+    # Change 'menu' to your own navigation slug.
+    return wp_get_nav_menu_items('menu');
+}
+
+add_action( 'rest_api_init', function () {
+        register_rest_route( 'myroutes', '/menu', array(
+        'methods' => 'GET',
+        'callback' => 'get_menu',
+    ) );
+} );
