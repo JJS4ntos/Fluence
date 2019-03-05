@@ -6,21 +6,41 @@ function remove_redirects() {
 	add_rewrite_rule( '^/(.+)/?', 'index.php', 'top' );
 }
 add_action( 'init', 'remove_redirects' );
+
+function load_js(){
+	$path    = get_stylesheet_directory().'/dist/js/';
+	$files = glob( $path.'*.{js}', GLOB_BRACE );
+	$files = array_diff(scandir($path), array('.', '..'));
+	foreach($files as $file){
+		wp_enqueue_script(
+			$file, //unique id
+			get_stylesheet_directory_uri() . '/dist/js/'.$file,
+			array(),
+			filemtime( get_stylesheet_directory() . '/dist/js/'.$file ),
+			true
+		);
+	}
+}
+
+function load_css(){
+	$path  = get_stylesheet_directory().'/dist/css';
+	$files = scandir($path);
+	$files = array_diff(scandir($path), array('.', '..'));
+	foreach($files as $file){
+		wp_enqueue_style(
+			$file, //unique id
+			get_stylesheet_directory_uri() . '/dist/css/'.$file,
+			array(),
+			filemtime( get_stylesheet_directory() . '/dist/css/'.$file ),
+			true
+		);
+	}
+}
+
 // Load scripts
 function load_vue_scripts() {
-	/*wp_enqueue_script(
-		'vuejs-wordpress-theme-starter-js',
-		get_stylesheet_directory_uri() . '/dist/scripts/index.min.bundle.js',
-		array( 'jquery' ),
-		filemtime( get_stylesheet_directory() . '/dist/scripts/index.min.bundle.js' ),
-		true
-	);
-	wp_enqueue_style(
-		'vuejs-wordpress-theme-starter-css',
-		get_stylesheet_directory_uri() . '/dist/styles.css',
-		null,
-		filemtime( get_stylesheet_directory() . '/dist/styles.css' )
-	);*/
+	load_css();
+	load_js();
 }
 add_action( 'wp_enqueue_scripts', 'load_vue_scripts', 100 );
 

@@ -1,6 +1,3 @@
-export default {
-
-  //API url
+let config = {
   API_URL: '/?rest_route='
-
 }
