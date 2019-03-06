@@ -1,5 +1,5 @@
 <template>
-    <b-navbar toggleable="lg" type="light" variant="light">
+    <b-navbar toggleable="lg" type="light">
         <b-navbar-brand href="#">
             <span v-html="title" id="logo"></span>
         </b-navbar-brand>
@@ -31,8 +31,3 @@ export default {
     }
 }
 </script>
-<style>
-#logo {
-    height: 100px !important;
-}
-</style>
