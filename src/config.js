@@ -1,3 +1,3 @@
-let config = {
-  API_URL: '/?rest_route='
+export default{
+  API_URL: window.location.pathname.concat('?rest_route=')
 }

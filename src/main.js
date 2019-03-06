@@ -3,12 +3,17 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import services from './api/services'
+import Axios from 'axios'
+import BootstrapVue from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.config.productionTip = false
 
-Vue.extend({
-  mixins:[services]
-})
+Vue.use(Axios)
+Vue.use(BootstrapVue)
+
+Vue.mixin(services)
 
 new Vue({
   router,

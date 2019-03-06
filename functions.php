@@ -7,16 +7,21 @@ function remove_redirects() {
 }
 add_action( 'init', 'remove_redirects' );
 
-function load_js(){
-	$path    = get_stylesheet_directory().'/dist/js/';
+function load_js($dev = false){
+	$dir = '/dist/js/';
+	//Check if in development mode.
+	if($dev){
+		$dir = '/dist/';
+	}
+	$path    = get_stylesheet_directory().$dir;
 	$files = glob( $path.'*.{js}', GLOB_BRACE );
 	$files = array_diff(scandir($path), array('.', '..'));
 	foreach($files as $file){
 		wp_enqueue_script(
 			$file, //unique id
-			get_stylesheet_directory_uri() . '/dist/js/'.$file,
+			get_stylesheet_directory_uri() . $dir.$file,
 			array(),
-			filemtime( get_stylesheet_directory() . '/dist/js/'.$file ),
+			filemtime( get_stylesheet_directory() . $dir.$file ),
 			true
 		);
 	}
@@ -36,21 +41,22 @@ function load_css(){
 	}
 }
 
+if( !has_nav_menu('main-menu') ){
+	register_nav_menus( 
+		array( 'main-menu' => 'Primary'	) 
+	);
+}
+
 // Load scripts
 function load_vue_scripts() {
-	load_js();
+	load_js(true);
 	load_css();
+	remove_redirects();
 }
+
 add_action( 'wp_enqueue_scripts', 'load_vue_scripts', 100 );
 
-function get_menu() {
-    # Change 'menu' to your own navigation slug.
-    return wp_get_nav_menu_items('menu');
-}
+require_once('routes.php');
+require_once('routes_callbacks.php');
 
-add_action( 'rest_api_init', function () {
-        register_rest_route( 'myroutes', '/menu', array(
-        'methods' => 'GET',
-        'callback' => 'get_menu',
-    ) );
-} );
+

@@ -1,12 +1,32 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
+    <!--<div id="nav">
+      <router-link to="/">Home</router-link>
       <router-link to="/about">About</router-link>
+    </div>-->
+    <div id="nav">
+      <nav-bar></nav-bar>
     </div>
-    <router-view/>
+    <div>
+      <page :page-id="pageId"></page>
+    </div>
   </div>
 </template>
+<script>
+import NavBar from '@/components/NavBar.vue'
+import Page from '@/views/Page.vue'
+
+export default {
+  components: {
+    NavBar, Page
+  },
+  data() {
+    return {
+      pageId: ''
+    }
+  }
+}
+</script>
 
 <style lang="scss">
 #app {

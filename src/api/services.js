@@ -1,14 +1,19 @@
+import config from '../config'
+import axios from 'axios'
+
 export default {
   methods: {
-    getAPIUrl(){
-      return this.$api.config.API_URL
-    },
     getPosts() {
-      let url = getAPIUrl().concat('/wp/v2/posts')
-      axios.get(url)
-          .then(response => {
-            console.log(response.data);
-          });
+      let url = config.API_URL.concat('/wp/v2/posts')
+      return axios.get(url)
+    },
+    getMenu(){
+      let url = config.API_URL.concat('/fluence/menu')
+      return axios.get(url)
+    },
+    getPage(id){
+      let url = config.API_URL.concat('/wp/v2/pages/'.concat(id))
+      return axios.get(url)
     }
   }
 }
