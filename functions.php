@@ -31,16 +31,15 @@ function load_css(){
 			$file, //unique id
 			get_stylesheet_directory_uri() . '/dist/css/'.$file,
 			array(),
-			filemtime( get_stylesheet_directory() . '/dist/css/'.$file ),
-			true
+			null
 		);
 	}
 }
 
 // Load scripts
 function load_vue_scripts() {
-	load_css();
 	load_js();
+	load_css();
 }
 add_action( 'wp_enqueue_scripts', 'load_vue_scripts', 100 );
 
