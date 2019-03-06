@@ -14,6 +14,10 @@ export default {
     getPage(id){
       let url = config.API_URL.concat('/wp/v2/pages/'.concat(id))
       return axios.get(url)
+    },
+    getWebsiteTitle(){
+      let url = config.API_URL.concat('/fluence/title')
+      return axios.get(url)
     }
   }
 }

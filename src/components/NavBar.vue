@@ -1,6 +1,8 @@
 <template>
     <b-navbar toggleable="lg" type="light" variant="light">
-        <b-navbar-brand href="#">NavBar</b-navbar-brand>
+        <b-navbar-brand href="#">
+            <span v-html="title" id="logo"></span>
+        </b-navbar-brand>
         <b-navbar-toggle target="nav_collapse" />
         <b-collapse is-nav id="nav_collapse">
             <b-navbar-nav>
@@ -17,12 +19,20 @@ export default {
     },
     data() {
         return {
-            pages: ''
+            pages: '',
+            title: ''
         }
     },
     mounted() {
         this.getMenu().then( response => this.pages = response.data )
                       .catch(err => this.content = 'Unable to load menu')
+        this.getWebsiteTitle().then( response => this.title = response.data )
+                            .catch(err => console.log(err))
     }
 }
 </script>
+<style>
+#logo {
+    height: 100px !important;
+}
+</style>
