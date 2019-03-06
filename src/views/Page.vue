@@ -1,11 +1,4 @@
 <template>
-    <div>
-        {{ pageId }}
-    </div>
+    <b-container v-html="this.$store.getters.pageRendered"></b-container>
 </template>
-<script>
-export default {
-    props: ['pageId']
-}
-</script>
 

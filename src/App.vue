@@ -8,7 +8,7 @@
       <nav-bar></nav-bar>
     </div>
     <div>
-      <page :page-id="pageId"></page>
+      <router-view></router-view>
     </div>
   </div>
 </template>

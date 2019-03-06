@@ -5,7 +5,7 @@
             <b-navbar-toggle target="nav_collapse" />
             <b-collapse is-nav id="nav_collapse">
                 <b-navbar-nav>
-                    <nav-bar-item v-for="page in pages" :page-id="page.object_id" :name="page.title" :key="page.id"></nav-bar-item>
+                    <nav-bar-item v-for="page in pages" :page-fetched="page" :key="page.id"></nav-bar-item>
                 </b-navbar-nav>
             </b-collapse>
         </b-navbar>
