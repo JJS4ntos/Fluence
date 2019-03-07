@@ -18,4 +18,13 @@ add_action( 'rest_api_init', function () {
 			'callback' => 'fluence_get_wp_title',
 		) 
 	);
+
+	register_rest_route(
+		'fluence', '/pages/(?P<id>\d+)',
+		array(
+		  	'methods' => 'GET',
+		  	'callback' => 'fluence_get_wp_page',
+		)
+  	);
+
 } );

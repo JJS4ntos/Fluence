@@ -62,7 +62,7 @@ if( !has_nav_menu('main-menu') ){
 
 // Load scripts
 function load_vue_scripts() {
-	load_js(true);
+	load_js(false);
 	load_css();
 	remove_redirects();
 }
@@ -71,5 +71,4 @@ add_action( 'wp_enqueue_scripts', 'load_vue_scripts', 100 );
 
 require_once('routes.php');
 require_once('routes_callbacks.php');
-
-
+require_once('filters.php');

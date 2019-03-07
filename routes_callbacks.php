@@ -1,5 +1,8 @@
 <?php 
 
+/**
+ * Get the menu with json format
+ */
 function fluence_get_menu() {
     // using register_nav_menus primary menu name -> 'menu-1'
     $menuLocations = get_nav_menu_locations(); // Get nav locations set in theme, usually functions.php)
@@ -9,9 +12,28 @@ function fluence_get_menu() {
     return $primaryNav;
 }
 
+/**
+ * Get the custom logo or the title
+ */
 function fluence_get_wp_title() {
     if( has_custom_logo() ) {
         return get_custom_logo();
     }
     return get_bloginfo('name');
+}
+
+/**
+ * Get the page rendered
+ */
+function fluence_get_wp_page(\WP_REST_Request $req){
+    $content = "";
+    $post_ID = $req->get_param("id");
+    $post = get_post($post_ID);
+    if ( strpos($post->post_name, 'elementor') !== FALSE && class_exists("\\Elementor\\Plugin") ) {
+        $pluginElementor = \Elementor\Plugin::instance();
+        $content = $pluginElementor->frontend->get_builder_content($post_ID);
+    }else{
+        $content = $post->post_content;
+    }
+    return $content;
 }

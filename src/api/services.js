@@ -13,6 +13,7 @@ export default {
     },
     getPage(id){
       let url = config.API_URL.concat('/wp/v2/pages/'.concat(id))
+      //let url = config.API_URL.concat('/fluence/pages/'.concat(id))
       return axios.get(url)
     },
     getWebsiteTitle(){

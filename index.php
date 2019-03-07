@@ -8,7 +8,13 @@
     <?php wp_head(); ?>
   </head>
   <body>
-    <div id="app"></div>
+    <?php
+      if( !empty($_GET["elementor-preview"]) && !empty($_GET["ver"]) ) {
+        echo the_content();
+      }else{
+        echo '<div id="app"></div>';
+      }
+    ?>
     <?php wp_footer(); ?>
   </body>
 </html>
